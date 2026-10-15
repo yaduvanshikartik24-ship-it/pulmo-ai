@@ -1,0 +1,20 @@
+# build outputs / inputs that are regenerated
+# (PULMO-AI.html is committed on purpose — it IS the app)
+
+# dependencies
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# local editor
+.vscode/
+.idea/
+*.swp
+
+# book-processing pipelines keep their data OUT of the repo
+# (copyrighted source material must never be committed)
+extracted/
+upload/
+*.pdf.lock

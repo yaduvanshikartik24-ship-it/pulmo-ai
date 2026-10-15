@@ -1,0 +1,56 @@
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   PULMO AI MK-VI · PLEURAL DISEASES CSS (p23-pleural-css)
+   ═══════════════════════════════════════════════════════════════════════ */
+.pl-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:12px}
+.pl-grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:11px}
+.pl-table{width:100%;border-collapse:collapse;font-size:10.5px}
+.pl-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--cyan);text-align:left;
+  padding:5px 8px;border-bottom:1px solid var(--line2);text-transform:uppercase}
+.pl-table td{padding:6px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--txt);line-height:1.5}
+.pl-table td.am{color:var(--am);font-family:var(--mono);font-weight:700;white-space:nowrap}
+.pl-table td.tl{color:var(--tl);font-family:var(--mono);font-weight:700;white-space:nowrap}
+.pl-table tr:hover td{background:rgba(0,229,255,.03)}
+.plcard{transition:.15s}
+.plcard:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,229,255,.09)}
+.pl-ic{width:32px;height:32px;border-radius:9px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.pl-ic svg{width:16px;height:16px}
+.plcalc .plcalc-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}
+.plcalc label{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:3px;text-transform:uppercase}
+.plcalc input,.plcalc select{width:100%;background:rgba(4,9,18,.55);border:1px solid var(--line-soft);border-radius:7px;
+  color:#dff3ff;font-family:var(--mono);font-size:11px;padding:6px 8px;outline:none}
+.plcalc input:focus,.plcalc select:focus{border-color:var(--line2);box-shadow:0 0 10px rgba(0,229,255,.14)}
+.plcalc select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 13px) 55%,calc(100% - 8px) 55%;background-size:4px 4px;background-repeat:no-repeat}
+.plcalc canvas{width:100%;margin-top:10px;display:block}
+.plseg{display:flex;width:100%;flex-wrap:wrap}
+.plseg button{flex:1;min-width:60px;font-family:var(--mono);font-size:9.5px;padding:6px 4px;background:rgba(4,9,18,.6);
+  border:1px solid var(--line-soft);color:var(--muted);cursor:pointer;transition:.12s}
+.plseg button:first-child{border-radius:7px 0 0 7px}
+.plseg button:last-child{border-radius:0 7px 7px 0}
+.plseg button.on{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.09);box-shadow:inset 0 0 12px rgba(0,229,255,.07)}
+.pl-chiprow{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.pl-chip{font-family:var(--mono);font-size:10px;border:1px solid var(--line-soft);border-radius:999px;padding:5px 11px;
+  background:rgba(6,12,24,.6);color:var(--muted);cursor:pointer;transition:.13s}
+.pl-chip:hover{border-color:var(--line2);color:var(--txt)}
+.pl-chip.on{border-color:var(--am);color:var(--am);background:rgba(255,180,84,.08)}
+.plbar{height:19px;border-radius:4px;position:relative;overflow:hidden;background:rgba(120,170,230,.10);flex:1;min-width:60px}
+.plbar i{position:absolute;inset:0 auto 0 0;border-radius:4px;transition:width .5s}
+.pl-dxrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line-soft)}
+.pl-dxrow:last-child{border-bottom:0}
+.pl-dxname{flex:0 0 175px;font-size:11px;color:#dff3ff;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-dxpct{flex:0 0 52px;font-family:var(--mono);font-weight:700;text-align:right}
+.pl-report h4{margin:16px 0 8px;font-size:10.5px;letter-spacing:.14em;color:var(--cyan);font-family:var(--mono);
+  border-bottom:1px solid var(--line-soft);padding-bottom:5px;text-transform:uppercase}
+#plpane-anx textarea,.plcalc textarea{width:100%;min-height:64px;resize:vertical;background:rgba(4,9,18,.55);border:1px solid var(--line-soft);border-radius:8px;
+  color:#dff3ff;font-family:var(--mono);font-size:11px;line-height:1.55;padding:9px 10px;outline:none}
+#plpane-anx textarea:focus,.plcalc textarea:focus{border-color:var(--line2);box-shadow:0 0 10px rgba(0,229,255,.14)}
+#plpane-anx textarea::placeholder,.plcalc textarea::placeholder{color:var(--muted);opacity:.65}
+#plpane-anx canvas{width:100%;display:block;margin-top:6px}
+.advct{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--am);margin-bottom:2px;text-transform:uppercase}
+.plcalc .flex,#plpane-anx .flex{gap:8px;flex-wrap:wrap}
+@media(max-width:640px){
+  .pl-dxname{flex:0 0 120px;font-size:10px}
+  .plcalc .plcalc-form{grid-template-columns:repeat(2,1fr)}
+}
+</style>

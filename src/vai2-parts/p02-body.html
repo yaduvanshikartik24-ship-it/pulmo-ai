@@ -1,0 +1,346 @@
+<body>
+<div id="scanlines" aria-hidden="true"></div>
+<div id="sweepbeam" aria-hidden="true"></div>
+
+<!-- ══ BOOT SEQUENCE ══ -->
+<div id="boot" role="status" aria-label="System booting">
+  <svg class="blogo" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" stroke="#00e5ff" stroke-opacity=".25" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="38" stroke="#00e5ff" stroke-opacity=".5" stroke-width="1" stroke-dasharray="6 10"/>
+    <path d="M50 18v18M50 36c-3-8-10-13-17-13-6 0-10 4-10 10 0 14 8 30 20 33 3 1 7-1 7-6V36z" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.08)"/>
+    <path d="M50 36c3-8 10-13 17-13 6 0 10 4 10 10 0 14-8 30-20 33-3 1-7-1-7-6V36z" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.08)"/>
+    <path d="M50 66v14" stroke="#00ffc6" stroke-width="2"/>
+    <circle cx="50" cy="84" r="3" fill="#00ffc6"/>
+  </svg>
+  <div class="bt1">PULMO <span>AI</span></div>
+  <div class="bt2">MK-VII · Offline Pulmonology Intelligence System</div>
+  <div class="blines" id="bootLines"></div>
+  <div class="bpbar"><i id="bootBar"></i></div>
+  <div class="bskip">▸ tap to skip</div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header class="top">
+  <div class="hwrap">
+    <div class="logo">
+      <svg class="mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="45" stroke="#00e5ff" stroke-opacity=".3" stroke-width="2"/>
+        <circle cx="50" cy="50" r="36" stroke="#00e5ff" stroke-opacity=".55" stroke-width="1.2" stroke-dasharray="5 9"/>
+        <path d="M50 20v16M50 36c-3-8-9-12-16-12-6 0-9 4-9 9 0 13 7 28 18 31 3 1 7-1 7-5V36z" stroke="#7df3ff" stroke-width="2.5" fill="rgba(0,229,255,.1)"/>
+        <path d="M50 36c3-8 9-12 16-12 6 0 9 4 9 9 0 13-7 28-18 31-3 1-7-1-7-5V36z" stroke="#7df3ff" stroke-width="2.5" fill="rgba(0,229,255,.1)"/>
+        <path d="M50 64v12" stroke="#00ffc6" stroke-width="2.5"/><circle cx="50" cy="82" r="2.6" fill="#00ffc6"/>
+      </svg>
+      <div>
+        <div class="t1">PULMO <span class="v">AI</span></div>
+        <div class="t2">MK-VII · PULMONOLOGY INTELLIGENCE · OFFLINE</div>
+      </div>
+    </div>
+    <div class="hstatus" id="hstatus">
+      <span class="chip ok"><span class="dot"></span>SYS ONLINE</span>
+      <span class="chip"><span class="dot"></span>OFFLINE · ZERO NETWORK</span>
+      <span class="chip info" id="chipKB">KB <b id="chipKBv">—</b></span>
+    </div>
+    <div class="hsearch">
+      <span class="sic" data-ic="search"></span>
+      <input id="gsearch" type="text" placeholder="Search modes, protocols, formulas…  ( / )" autocomplete="off" aria-label="Search knowledge base">
+      <div class="search-pop" id="searchPop"></div>
+    </div>
+    <div class="hclock"><div class="t" id="clockT">--:--:--</div><div class="d" id="clockD">—</div></div>
+  </div>
+  <nav class="tabs" id="nav" aria-label="Sections">
+    <button class="tab active" data-view="cmd"><span data-ic="grid"></span>Command<span class="tno">01</span></button>
+    <button class="tab" data-view="ai"><span data-ic="cpu"></span>AI Consult<span class="tno">02</span></button>
+    <button class="tab" data-view="scn"><span data-ic="steth"></span>Scenarios<span class="tno">03</span></button>
+    <button class="tab" data-view="modes"><span data-ic="book"></span>Modes<span class="tno">04</span></button>
+    <button class="tab" data-view="calc"><span data-ic="calc"></span>Calculators<span class="tno">05</span></button>
+    <button class="tab" data-view="wave"><span data-ic="wave"></span>Waveform Lab<span class="tno">06</span></button>
+    <button class="tab" data-view="sleep"><span data-ic="moon"></span>Sleep Lab<span class="tno">07</span></button>
+    <button class="tab" data-view="smoke"><span data-ic="nosmoke"></span>Nicotine<span class="tno">08</span></button>
+    <button class="tab" data-view="guide"><span data-ic="layers"></span>Guidelines<span class="tno">09</span></button>
+    <button class="tab" data-view="ref"><span data-ic="db"></span>Reference<span class="tno">10</span></button>
+    <button class="tab" data-view="syn"><span data-ic="network"></span>Synapse<span class="tno">11</span></button>
+    <button class="tab" data-view="pleural"><span data-ic="drop"></span>Pleural<span class="tno">12</span></button>
+    <button class="tab" data-view="sys"><span data-ic="shield"></span>System<span class="tno">13</span></button>
+  </nav>
+</header>
+
+<main>
+  <!-- ══ 01 COMMAND DECK ══ -->
+  <section class="view active" id="view-cmd" aria-label="Command deck">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> COMMAND DECK</h2>
+      <span class="sub">SITUATION OVERVIEW · KNOWLEDGE CORE STATUS</span>
+    </div>
+    <div class="grid g6" id="kbStats" style="margin-bottom:14px"></div>
+    <div class="grid g32" style="margin-bottom:14px">
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="wave"></span>LIVE WAVEFORM · SIMULATION</div>
+          <div class="ro-row" id="dashWaveChips"></div></div>
+        <div class="panel-b tight">
+          <div class="scalar" style="border:0;background:transparent;padding:0"><canvas id="dashWave" height="150"></canvas></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <div class="panel">
+          <div class="panel-h"><div class="pt"><span data-ic="pulse"></span>DEMO TELEMETRY</div><span class="chip warn">SIMULATED</span></div>
+          <div class="panel-b"><div class="grid g2" id="vitals"></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-h"><div class="pt"><span data-ic="shield"></span>SYSTEM STATUS</div></div>
+          <div class="panel-b" id="sysStatus"></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid g3" id="quickNav" style="margin-bottom:14px"></div>
+    <div class="ticker"><div class="tk" id="ticker"></div></div>
+  </section>
+
+  <!-- ══ 02 AI CONSULT ══ -->
+  <section class="view" id="view-ai" aria-label="AI consultation">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> AI CONSULT</h2>
+      <span class="sub">RULE-BASED CLINICAL DECISION ENGINE · 100% LOCAL PROCESSING</span>
+    </div>
+    <div class="grid g32" style="margin-bottom:14px">
+      <div class="panel brk" style="display:flex;flex-direction:column">
+        <div class="panel-h"><div class="pt"><span data-ic="cpu"></span>CONSULTATION CONSOLE</div><span class="chip ok"><span class="dot"></span>ENGINE READY</span></div>
+        <div class="panel-b" style="display:flex;flex-direction:column;gap:11px;flex:1">
+          <div class="console" id="aiConsole" aria-live="polite"></div>
+          <div class="flex" style="gap:8px">
+            <input id="aiInput" type="text" placeholder="Ask: how do I ventilate ARDS? / why is PIP high? …" autocomplete="off" aria-label="Ask the AI">
+            <button class="btn primary" id="aiSend" style="flex:0 0 auto"><span data-ic="send"></span>Send</button>
+          </div>
+          <div class="flex wrap" id="aiQuick" style="gap:6px"></div>
+          <div class="flex wrap" id="aiRel" style="gap:6px"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><div class="pt"><span data-ic="form"></span>STRUCTURED CONSULT</div><span class="chip">INPUT PATIENT → GET PLAN</span></div>
+        <div class="panel-b">
+          <div class="formgrid" style="grid-template-columns:1fr 1fr">
+            <div class="field" style="grid-column:1/-1"><label>Condition / scenario</label><select id="cCond"></select></div>
+            <div class="field"><label>Sex</label>
+              <div class="seg" id="cSex"><button data-v="male" class="on">MALE</button><button data-v="female">FEMALE</button></div></div>
+            <div class="field"><label>Height (cm)</label><input id="cHeight" type="number" value="170" min="120" max="230"></div>
+          </div>
+          <div class="res info" id="cIbw" style="margin-top:12px"></div>
+          <div class="formgrid" style="margin-top:12px">
+            <div class="field"><label>Spontaneous effort</label>
+              <div class="seg" id="cEffort"><button data-v="none">NONE</button><button data-v="weak" class="on">WEAK</button><button data-v="strong">STRONG</button></div></div>
+            <div class="field"><label>Oxygenation</label>
+              <div class="seg" id="cOxy"><button data-v="adequate" class="on">ADEQ</button><button data-v="impaired">IMPAIRED</button><button data-v="severe">SEVERE</button></div></div>
+            <div class="field"><label>CO₂ clearance</label>
+              <div class="seg" id="cCo2"><button data-v="adequate" class="on">ADEQ</button><button data-v="retaining">RETAINING</button></div></div>
+            <div class="field"><label>Haemodynamics</label>
+              <div class="seg" id="cHemo"><button data-v="stable" class="on">STABLE</button><button data-v="marginal">MARGINAL</button><button data-v="unstable">UNSTABLE</button></div></div>
+          </div>
+          <label class="sw" style="margin-top:14px"><input type="checkbox" id="cNiv" checked><span class="tr"></span><span class="sl">Prefer non-invasive if appropriate</span></label>
+          <button class="btn primary" id="consultGo" style="width:100%;margin-top:14px"><span data-ic="zap"></span>Generate Ventilation Plan</button>
+        </div>
+      </div>
+    </div>
+    <div id="consultOut"></div>
+  </section>
+
+  <!-- ══ 03 SCENARIOS ══ -->
+  <section class="view" id="view-scn" aria-label="Patient scenarios">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> SCENARIO PROTOCOLS</h2>
+      <span class="sub" id="scnCount"></span>
+    </div>
+    <div class="flex wrap" id="scnFilter" style="gap:7px;margin-bottom:14px"></div>
+    <div class="grid g4" id="scnGrid"></div>
+  </section>
+
+  <!-- ══ 04 MODES ══ -->
+  <section class="view" id="view-modes" aria-label="Ventilator modes">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> MODE MATRIX</h2>
+      <span class="sub" id="modeCount"></span>
+    </div>
+    <div class="flex wrap" id="modeFilter" style="gap:7px;margin-bottom:14px"></div>
+    <div class="grid g4" id="modesGrid"></div>
+  </section>
+
+  <!-- ══ 05 CALCULATORS ══ -->
+  <section class="view" id="view-calc" aria-label="Calculators">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> CALCULATOR ARRAY</h2>
+      <span class="sub">LIVE COMPUTE · GRAPHED OUTPUT · CLINICAL VERDICTS</span>
+    </div>
+    <div class="grid" style="grid-template-columns:250px minmax(0,1fr);gap:16px" id="calcLayout">
+      <div class="rail" id="calcRail" aria-label="Calculator list"></div>
+      <div id="calcBody"></div>
+    </div>
+  </section>
+
+  <!-- ══ 06 WAVEFORM LAB ══ -->
+  <section class="view" id="view-wave" aria-label="Waveform lab">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> WAVEFORM LAB</h2>
+      <span class="sub">EQUATION-OF-MOTION PHYSICS · LIVE SWEEP · LOOP ANALYSIS</span>
+    </div>
+    <div class="wavelab" style="margin-bottom:16px">
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="panel-h"><div class="pt"><span data-ic="wave"></span>SCALARS · SWEEP MODE</div>
+            <div class="ro-row" id="waveRO"></div></div>
+          <div class="panel-b tight">
+            <div class="scalars">
+              <div class="scalar"><span class="sl">PAW · cmH₂O</span><span class="sv" id="roPaw">—</span><canvas id="waveP"></canvas></div>
+              <div class="scalar"><span class="sl">FLOW · L/min</span><span class="sv" id="roFlow">—</span><canvas id="waveF"></canvas></div>
+              <div class="scalar"><span class="sl">VOLUME · mL</span><span class="sv" id="roVol">—</span><canvas id="waveV"></canvas></div>
+            </div>
+          </div>
+        </div>
+        <div class="loops">
+          <div class="loop"><span class="sl">P–V LOOP</span><canvas id="loopPV"></canvas></div>
+          <div class="loop"><span class="sl">F–V LOOP</span><canvas id="loopFV"></canvas></div>
+        </div>
+      </div>
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="gauge"></span>CONTROL DECK</div><span class="chip" id="deckModeChip">VCV</span></div>
+        <div class="panel-b deck" id="waveDeck"></div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-bottom:16px">
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="activity"></span>ASYNCHRONY ATLAS</div><span class="chip">8 SIGNATURES</span></div>
+        <div class="panel-b"><div class="atlasgrid" id="asyncAtlas"></div></div>
+      </div>
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="capno"></span>CAPNOGRAPHY ATLAS</div><span class="chip">etCO₂ WAVEFORMS</span></div>
+        <div class="panel-b"><div class="atlasgrid" id="capnoAtlas"></div></div>
+      </div>
+    </div>
+    <div class="panel brk">
+      <div class="panel-h"><div class="pt"><span data-ic="chart"></span>P–V CURVE EXPLORER · RECRUITMENT WINDOW</div></div>
+      <div class="panel-b"><div class="grid g32">
+        <div class="chartbox"><div class="ct">STATIC PRESSURE–VOLUME CURVE</div><canvas id="pvCurve" height="340"></canvas></div>
+        <div>
+          <div class="field"><label>Applied PEEP <b class="mono" id="pvPeepv" style="float:right">12 cmH₂O</b></label><input type="range" id="pvPeep" min="0" max="24" step="1" value="12"></div>
+          <div class="field" style="margin-top:10px"><label>Driving pressure ΔP <b class="mono" id="pvDpv" style="float:right">14 cmH₂O</b></label><input type="range" id="pvDp" min="4" max="24" step="1" value="14"></div>
+          <div class="res" id="pvVerdict" style="margin-top:14px"></div>
+          <p class="small muted" style="line-height:1.65;margin-top:8px">Below the lower inflection point (LIP), alveoli collapse at end-expiration → <b class="am">atelectrauma</b>. Above the upper inflection point (UIP), the curve flattens — each cmH₂O buys little volume but stresses the lung → <b class="rd">volutrauma</b>. Lung-protective ventilation aims to keep the tidal window inside the <b class="gr">linear safe zone</b>.</p>
+        </div>
+      </div></div>
+    </div>
+    <div id="ventAnxMount"></div>
+  </section>
+
+  <!-- ══ 07 SLEEP LAB ══ -->
+  <section class="view" id="view-sleep" aria-label="Sleep lab">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> SLEEP LAB</h2>
+      <span class="sub">LIVE PSG SIMULATION · AASM SCORING · SLEEP MEDICINE CORPUS</span>
+    </div>
+    <div class="stabs" id="sleepTabs"></div>
+    <div id="sleepPanes"></div>
+  </section>
+
+  <!-- ══ 08 NICOTINE CENTER ══ -->
+  <section class="view" id="view-smoke" aria-label="Nicotine center">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> NICOTINE CENTER</h2>
+      <span class="sub">CIGARETTE CALCULATOR API · CESSATION PROTOCOLS · PHARMACOTHERAPY</span>
+    </div>
+    <div class="stabs" id="smokeTabs"></div>
+    <div id="smokePanes"></div>
+  </section>
+
+  <!-- ══ 09 GUIDELINE CORPUS ══ -->
+  <section class="view" id="view-guide" aria-label="Guideline corpus">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> GUIDELINE CORPUS</h2>
+      <span class="sub" id="guideCount"></span>
+    </div>
+    <div class="flex wrap" id="guideFilter" style="gap:7px;margin-bottom:14px"></div>
+    <div id="guideList"></div>
+  </section>
+
+  <!-- ══ 10 REFERENCE ══ -->
+  <section class="view" id="view-ref" aria-label="Reference core">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> REFERENCE CORE</h2>
+      <span class="sub">PROTOCOLS · SCALES · TABLES · EQUATIONS · TIMELINE · GLOSSARY</span>
+    </div>
+    <div id="refAcc"></div>
+  </section>
+
+  <!-- ══ 11 SYNAPSE CONSULT (MK-V) ══ -->
+  <section class="view" id="view-syn" aria-label="Synapse consult">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> SYNAPSE CONSULT</h2>
+      <span class="sub">VENTILATOR IMAGE + PATIENT DATA · SLEEP-STUDY PARAMETERS → 8-ALGORITHM OFFLINE INFERENCE → NEXT STEP + MANAGEMENT</span>
+    </div>
+    <div class="stabs" id="synTabs"></div>
+    <div id="synPanes"></div>
+  </section>
+
+  <!-- ══ 12 PLEURAL DISEASES (MK-VI) ══ -->
+  <section class="view" id="view-pleural" aria-label="Pleural diseases">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> PLEURAL DISEASES</h2>
+      <span class="sub">LIGHT'S PLEURAL DISEASES 6E · FULL-BOOK CORPUS · CALCULATORS · FLUID ANALYZER · DIAGNOSTIC AI CONSULT</span>
+    </div>
+    <div class="stabs" id="plTabs"></div>
+    <div id="plPanes"></div>
+  </section>
+
+  <!-- ══ 13 SYSTEM ══ -->
+  <section class="view" id="view-sys" aria-label="System">
+    <div class="vhead">
+      <h2><span class="slash">▸</span> SYSTEM</h2>
+      <span class="sub">OFFLINE VERIFICATION · DATA INVENTORY · USAGE</span>
+    </div>
+    <div class="grid g2" style="margin-bottom:14px">
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="shield"></span>OFFLINE INTEGRITY SELF-CHECK</div></div>
+        <div class="panel-b" id="offlineCheck"></div>
+      </div>
+      <div class="panel brk">
+        <div class="panel-h"><div class="pt"><span data-ic="db"></span>DATA INVENTORY</div></div>
+        <div class="panel-b" id="sysInv"></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-bottom:14px">
+      <div class="panel-h"><div class="pt"><span data-ic="book"></span>USING PULMO AI OFFLINE</div></div>
+      <div class="panel-b">
+        <ul>
+          <li><b>Single file.</b> Everything — ventilator knowledge, sleep-lab simulator, nicotine center, guideline corpus, physics engine, calculators, graphs and lecture figures — is embedded in this one HTML document. No server, no internet, no installation.</li>
+          <li><b>Run anywhere.</b> Double-click the file on any modern laptop, tablet or phone browser. It works from a USB stick, shared folder or email attachment.</li>
+          <li><b>Zero telemetry.</b> No patient data ever leaves the device. There are no network calls of any kind — verify with the self-check on this page.</li>
+          <li><b>Save &amp; share.</b> Print any protocol sheet, or export an AI consult report as a text file from the AI console.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" style="border-color:rgba(255,180,84,.4)">
+      <div class="panel-h"><div class="pt" style="color:var(--amber)"><span data-ic="alert"></span>CLINICAL DISCLAIMER</div></div>
+      <div class="panel-b">
+        <p style="color:var(--amber);font-size:13px;line-height:1.7">PULMO AI is an <b>educational decision-support tool</b> for trained clinicians and students. It does not replace clinical judgement, senior supervision, local protocols or device manuals. Always verify settings against your institution's guidelines, current primary literature and the ventilator in front of you. Content synthesised from a 132-slide mechanical-ventilation lecture deck, AASM sleep-scoring references, USPHS/ATS smoking-cessation guidance and major society guidelines (GOLD, GINA, ARDSNet/Berlin, ESC, ATS/IDSA, USPSTF, WHO). Patient care decisions remain the responsibility of the treating clinician.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══ DETAIL SHEET ══ -->
+<div class="overlay" id="overlay">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-h">
+      <div style="min-width:0"><div class="st" id="sheetTitle">—</div><div class="ss" id="sheetSub">—</div></div>
+      <button class="xbtn" id="sheetX" aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-b" id="sheetBody"></div>
+  </div>
+</div>
+
+<div id="toast" role="status"></div>
+
+<footer class="bot">
+  <div class="fwrap">
+    <span class="cy">PULMO AI · MK-VII</span>
+    <span>v6.0 OFFLINE BUILD · SYNAPSE INFERENCE + VISION + SLEEP + VENT + NICOTINE + GUIDELINES + DIFFERENTIAL PSG + STATISTICAL ANALYTICS + PLEURAL DISEASES (LIGHT 6E FULL-BOOK CORPUS)</span>
+    <span class="fdisc">⚠ EDUCATIONAL USE — VERIFY AGAINST LOCAL PROTOCOLS</span>
+    <span style="margin-left:auto" id="footKB">—</span>
+  </div>
+</footer>
