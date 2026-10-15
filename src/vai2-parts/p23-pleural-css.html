@@ -49,8 +49,21 @@
 #plpane-anx canvas{width:100%;display:block;margin-top:6px}
 .advct{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--am);margin-bottom:2px;text-transform:uppercase}
 .plcalc .flex,#plpane-anx .flex{gap:8px;flex-wrap:wrap}
+/* MK-VII.1 mobile: horizontal-scroll wrapper for wide reference tables */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.tblwrap table{min-width:430px;width:100%}
 @media(max-width:640px){
-  .pl-dxname{flex:0 0 120px;font-size:10px}
+  .pl-dxname{flex:0 0 112px;font-size:10.5px}
   .plcalc .plcalc-form{grid-template-columns:repeat(2,1fr)}
+  .pl-table{font-size:11.5px}
+  .pl-table th{font-size:9.5px}
+  .pl-table td{padding:8px 8px}
+  .plcalc label{font-size:9.5px;letter-spacing:.06em}
+  .plcalc input,.plcalc select{font-size:12px;padding:8px 9px}
+  .plseg button{min-width:56px;font-size:10.5px;padding:9px 5px}
+  .pl-chip{font-size:11px;padding:7px 13px}
+  .advct{font-size:10px}
+  .pl-report h4{font-size:11.5px}
+  #plpane-anx textarea,.plcalc textarea{font-size:12px}
 }
 </style>

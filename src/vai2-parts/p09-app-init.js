@@ -191,6 +191,7 @@ function initAll() {
   buildGuidelinesView();
   if (typeof buildSynapseView === "function") buildSynapseView();
   if (typeof buildPleuralView === "function") buildPleuralView();
+  wrapTables();
   wireSmokeApi();
   buildSearch();
   wireNav();
@@ -201,6 +202,18 @@ function initAll() {
   const last = store.get("view", null);
   if (last && $("#view-" + last)) gotoView(last);
   runBoot();
+}
+/* MK-VII.1 mobile: put every app table inside a horizontal-scroll wrapper so
+   wide reference tables never force page-level horizontal overflow on phones.
+   Wrapper is inert on desktop (block div, table keeps 100% width). */
+function wrapTables() {
+  document.querySelectorAll("main table").forEach(t => {
+    if (t.parentElement && t.parentElement.classList.contains("tblwrap")) return;
+    const w = document.createElement("div");
+    w.className = "tblwrap";
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
 }
 initAll();
 </script>

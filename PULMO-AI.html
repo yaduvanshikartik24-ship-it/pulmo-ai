@@ -383,7 +383,7 @@ input.bad{border-color:rgba(255,56,96,.6);box-shadow:0 0 0 3px rgba(255,56,96,.1
 .ro{font-family:var(--mono);font-size:10px;letter-spacing:.06em;border:1px solid var(--line-soft);border-radius:7px;padding:5px 9px;background:rgba(6,12,24,.7);color:var(--muted)}
 .ro b{color:var(--cyan);font-weight:600;font-size:12px}
 .ro.warn b{color:var(--amber)} .ro.bad b{color:var(--red)}
-.atlasgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.atlasgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:14px}
 .atlas{background:var(--panel);border:1px solid var(--line-soft);border-radius:12px;padding:12px}
 .atlas canvas{display:block;width:100%;height:130px;background:rgba(3,8,16,.8);border-radius:8px;border:1px solid var(--line-soft);margin-bottom:9px}
 .atlas .an{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;margin-bottom:4px}
@@ -499,7 +499,29 @@ main{padding-bottom:120px}
   .calcgrid{gap:10px}
   .deck .drow{grid-template-columns:1fr}
   #boot .bt1{font-size:17px;letter-spacing:.22em}
+  /* MK-VII.1 mobile polish — bigger type + touch targets */
+  nav.tabs .tab{padding:10px 10px;font-size:10.5px;gap:4px}
+  .tab .tno{display:none}
+  nav.tabs{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  nav.tabs .tab{scroll-snap-align:start}
+  .stat .sv{font-size:20px}
+  .stat .sn{font-size:10.5px;letter-spacing:.12em}
+  .stat{padding:12px 12px}
+  .vit .vv{font-size:17px}
+  .vit .vl{font-size:10px;letter-spacing:.12em}
+  .vit{gap:10px;padding:11px 12px}
+  main{padding-bottom:150px}
+  .hsearch input{font-size:13px}
+  footer.bot{font-size:10px}
+  /* MK-VII.1 narrow-screen: sys-check rows + chips wrap instead of overflowing */
+  .prow{flex-wrap:wrap;row-gap:5px}
+  .prow .pk{min-width:0;white-space:normal}
+  .chip{max-width:100%}
 }
+/* MK-VII.1 — notch/safe-area insets (always on) */
+.hwrap{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+main{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+footer.bot{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
 @media print{
   body::before,body::after,#scanlines,#sweepbeam,header.top,nav.tabs,footer.bot,#boot{display:none!important}
   body{background:#fff;color:#000}
@@ -829,6 +851,16 @@ main{padding-bottom:120px}
   padding:5px 10px 8px;letter-spacing:.05em}
 .zref i{font-style:normal;display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:-1px}
 @media(max-width:900px){.anxgrid{grid-template-columns:1fr}}
+/* MK-VII.1 mobile readability — analytics chrome */
+@media(max-width:640px){
+  .anx-controls .lbl{font-size:10px}
+  .chart-toggles .tg{font-size:10px;padding:5px 10px}
+  .eqline{font-size:10.5px}
+  .zref{font-size:10px}
+  .anxcard .ah .at{font-size:10.5px}
+  .anx-intro p{font-size:12px}
+  .anx-controls{gap:10px}
+}
 </style>
 </head>
 
@@ -1066,9 +1098,22 @@ main{padding-bottom:120px}
 #plpane-anx canvas{width:100%;display:block;margin-top:6px}
 .advct{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--am);margin-bottom:2px;text-transform:uppercase}
 .plcalc .flex,#plpane-anx .flex{gap:8px;flex-wrap:wrap}
+/* MK-VII.1 mobile: horizontal-scroll wrapper for wide reference tables */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.tblwrap table{min-width:430px;width:100%}
 @media(max-width:640px){
-  .pl-dxname{flex:0 0 120px;font-size:10px}
+  .pl-dxname{flex:0 0 112px;font-size:10.5px}
   .plcalc .plcalc-form{grid-template-columns:repeat(2,1fr)}
+  .pl-table{font-size:11.5px}
+  .pl-table th{font-size:9.5px}
+  .pl-table td{padding:8px 8px}
+  .plcalc label{font-size:9.5px;letter-spacing:.06em}
+  .plcalc input,.plcalc select{font-size:12px;padding:8px 9px}
+  .plseg button{min-width:56px;font-size:10.5px;padding:9px 5px}
+  .pl-chip{font-size:11px;padding:7px 13px}
+  .advct{font-size:10px}
+  .pl-report h4{font-size:11.5px}
+  #plpane-anx textarea,.plcalc textarea{font-size:12px}
 }
 </style>
 
@@ -16424,6 +16469,7 @@ function initAll() {
   buildGuidelinesView();
   if (typeof buildSynapseView === "function") buildSynapseView();
   if (typeof buildPleuralView === "function") buildPleuralView();
+  wrapTables();
   wireSmokeApi();
   buildSearch();
   wireNav();
@@ -16434,6 +16480,18 @@ function initAll() {
   const last = store.get("view", null);
   if (last && $("#view-" + last)) gotoView(last);
   runBoot();
+}
+/* MK-VII.1 mobile: put every app table inside a horizontal-scroll wrapper so
+   wide reference tables never force page-level horizontal overflow on phones.
+   Wrapper is inert on desktop (block div, table keeps 100% width). */
+function wrapTables() {
+  document.querySelectorAll("main table").forEach(t => {
+    if (t.parentElement && t.parentElement.classList.contains("tblwrap")) return;
+    const w = document.createElement("div");
+    w.className = "tblwrap";
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
 }
 initAll();
 </script>
