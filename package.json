@@ -1,0 +1,13 @@
+{
+  "name": "pulmo-ai",
+  "version": "7.1.0",
+  "private": true,
+  "description": "PULMO AI — offline pulmonology intelligence workstation (static single-file app)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
